@@ -1,0 +1,228 @@
+{
+  "source": "OpenStax Biology 2e",
+  "license": "CC BY 4.0",
+  "url": "https://openstax.org/books/biology-2e/pages/7-2-glycolysis",
+  "chapter": 7,
+  "section": "7.2",
+  "title": "Glycolysis",
+  "passage_count": 14,
+  "glossary": [
+    "1,3-bisphosphoglycerate",
+    "2-phosphoglycerate",
+    "3-phosphoglycerate",
+    "ADP",
+    "ATP",
+    "NAD+",
+    "NADH",
+    "aerobic respiration",
+    "aldolase",
+    "anaerobic respiration",
+    "cytoplasm",
+    "dihydroxyacetone phosphate",
+    "dihydroxyacetone-phosphate",
+    "enolase",
+    "fructose-1,6-bisphosphate",
+    "fructose-6-phosphate",
+    "glucose",
+    "glucose-6-phosphate",
+    "glyceraldehyde-3-phosphate",
+    "glyceraldehyde-3-phosphate dehydrogenase",
+    "glycolysis",
+    "hexokinase",
+    "isomerase",
+    "mitochondria",
+    "phosphoenolpyruvate",
+    "phosphofructokinase",
+    "phosphoglycerate kinase",
+    "phosphoglycerate mutase",
+    "pyruvate",
+    "pyruvate kinase",
+    "rate-limiting enzyme",
+    "substrate-level phosphorylation"
+  ],
+  "passages": [
+    {
+      "passage_id": "openstax-bio2e-7.2-p01",
+      "section": "7.2 Glycolysis",
+      "subsection": "Introduction",
+      "text": "As you have read, nearly all of the energy used by living cells comes to them in the bonds of the sugar glucose. Glycolysis is the first step in the breakdown of glucose to extract energy for cellular metabolism. In fact, nearly all living organisms carry out glycolysis as part of their metabolism. The process does not use oxygen directly and therefore is termed anaerobic. Glycolysis takes place in the cytoplasm of both prokaryotic and eukaryotic cells. Glucose enters heterotrophic cells in two ways. One method is through secondary active transport in which the transport takes place against the glucose concentration gradient. The other mechanism uses a group of integral proteins called GLUT proteins, also known as glucose transporter proteins. These transporters assist in the facilitated diffusion of glucose.",
+      "sentences": [
+        "As you have read, nearly all of the energy used by living cells comes to them in the bonds of the sugar glucose.",
+        "Glycolysis is the first step in the breakdown of glucose to extract energy for cellular metabolism.",
+        "In fact, nearly all living organisms carry out glycolysis as part of their metabolism.",
+        "The process does not use oxygen directly and therefore is termed anaerobic.",
+        "Glycolysis takes place in the cytoplasm of both prokaryotic and eukaryotic cells.",
+        "Glucose enters heterotrophic cells in two ways.",
+        "One method is through secondary active transport in which the transport takes place against the glucose concentration gradient.",
+        "The other mechanism uses a group of integral proteins called GLUT proteins, also known as glucose transporter proteins.",
+        "These transporters assist in the facilitated diffusion of glucose."
+      ],
+      "token_count": 129
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p02",
+      "section": "7.2 Glycolysis",
+      "subsection": "Introduction",
+      "text": "Glycolysis begins with the six-carbon ring-shaped structure of a single glucose molecule and ends with two molecules of a three-carbon keto acid called pyruvate. Glycolysis consists of two distinct phases. The first part of the glycolysis pathway traps the glucose molecule in the cell and uses energy to modify it so that the six-carbon sugar molecule can be split evenly into the two three-carbon molecules. The second part of glycolysis extracts energy from the molecules and stores it in the form of ATP and NADH\u2014remember: this is the reduced form of NAD.",
+      "sentences": [
+        "Glycolysis begins with the six-carbon ring-shaped structure of a single glucose molecule and ends with two molecules of a three-carbon keto acid called pyruvate.",
+        "Glycolysis consists of two distinct phases.",
+        "The first part of the glycolysis pathway traps the glucose molecule in the cell and uses energy to modify it so that the six-carbon sugar molecule can be split evenly into the two three-carbon molecules.",
+        "The second part of glycolysis extracts energy from the molecules and stores it in the form of ATP and NADH\u2014remember: this is the reduced form of NAD."
+      ],
+      "token_count": 92
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p03",
+      "section": "7.2 Glycolysis",
+      "subsection": "First Half of Glycolysis (Energy-Requiring Steps)",
+      "text": "Step 1. The first step in glycolysis (Figure 7.8) is catalyzed by hexokinase, an enzyme with broad specificity that catalyzes the phosphorylation of six-carbon sugars. Hexokinase phosphorylates glucose using ATP as the source of the phosphate, producing glucose-6-phosphate, a more reactive form of glucose. This reaction prevents the phosphorylated glucose molecule from continuing to interact with the GLUT proteins, and it can no longer leave the cell because the negatively charged phosphate will not allow it to cross the hydrophobic interior of the plasma membrane.",
+      "sentences": [
+        "Step 1.",
+        "The first step in glycolysis (Figure 7.8) is catalyzed by hexokinase, an enzyme with broad specificity that catalyzes the phosphorylation of six-carbon sugars.",
+        "Hexokinase phosphorylates glucose using ATP as the source of the phosphate, producing glucose-6-phosphate, a more reactive form of glucose.",
+        "This reaction prevents the phosphorylated glucose molecule from continuing to interact with the GLUT proteins, and it can no longer leave the cell because the negatively charged phosphate will not allow it to cross the hydrophobic interior of the plasma membrane."
+      ],
+      "token_count": 85
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p04",
+      "section": "7.2 Glycolysis",
+      "subsection": "First Half of Glycolysis (Energy-Requiring Steps)",
+      "text": "Step 2. In the second step of glycolysis, an isomerase converts glucose-6-phosphate into one of its isomers, fructose-6-phosphate (this isomer has a phosphate attached at the location of the sixth carbon of the ring). An isomerase is an enzyme that catalyzes the conversion of a molecule into one of its isomers. (This change from phosphoglucose to phosphofructose allows the eventual split of the sugar into two three-carbon molecules.)",
+      "sentences": [
+        "Step 2.",
+        "In the second step of glycolysis, an isomerase converts glucose-6-phosphate into one of its isomers, fructose-6-phosphate (this isomer has a phosphate attached at the location of the sixth carbon of the ring).",
+        "An isomerase is an enzyme that catalyzes the conversion of a molecule into one of its isomers. (This change from phosphoglucose to phosphofructose allows the eventual split of the sugar into two three-carbon molecules.)"
+      ],
+      "token_count": 68
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p05",
+      "section": "7.2 Glycolysis",
+      "subsection": "First Half of Glycolysis (Energy-Requiring Steps)",
+      "text": "Step 3. The third step is the phosphorylation of fructose-6-phosphate, catalyzed by the enzyme phosphofructokinase. A second ATP molecule donates a high-energy phosphate to fructose-6-phosphate, producing fructose-1,6-bisphosphate. In this pathway, phosphofructokinase is a rate-limiting enzyme. It is active when the concentration of ADP is high; it is less active when ADP levels are low and the concentration of ATP is high. Thus, if there is \u201csufficient\u201d ATP in the system, the pathway slows down. This is a type of end product inhibition, since ATP is the end product of glucose catabolism.",
+      "sentences": [
+        "Step 3.",
+        "The third step is the phosphorylation of fructose-6-phosphate, catalyzed by the enzyme phosphofructokinase.",
+        "A second ATP molecule donates a high-energy phosphate to fructose-6-phosphate, producing fructose-1,6-bisphosphate.",
+        "In this pathway, phosphofructokinase is a rate-limiting enzyme.",
+        "It is active when the concentration of ADP is high; it is less active when ADP levels are low and the concentration of ATP is high.",
+        "Thus, if there is \u201csufficient\u201d ATP in the system, the pathway slows down.",
+        "This is a type of end product inhibition, since ATP is the end product of glucose catabolism."
+      ],
+      "token_count": 91
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p06",
+      "section": "7.2 Glycolysis",
+      "subsection": "First Half of Glycolysis (Energy-Requiring Steps)",
+      "text": "Step 4. The newly added high-energy phosphates further destabilize fructose-1,6-bisphosphate. The fourth step in glycolysis employs an enzyme, aldolase, to cleave fructose-1,6-bisphosphate into two three-carbon isomers: dihydroxyacetone phosphate and glyceraldehyde-3-phosphate.",
+      "sentences": [
+        "Step 4.",
+        "The newly added high-energy phosphates further destabilize fructose-1,6-bisphosphate.",
+        "The fourth step in glycolysis employs an enzyme, aldolase, to cleave fructose-1,6-bisphosphate into two three-carbon isomers: dihydroxyacetone phosphate and glyceraldehyde-3-phosphate."
+      ],
+      "token_count": 30
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p07",
+      "section": "7.2 Glycolysis",
+      "subsection": "First Half of Glycolysis (Energy-Requiring Steps)",
+      "text": "Step 5. In the fifth step, an isomerase transforms the dihydroxyacetone-phosphate into its isomer, glyceraldehyde-3-phosphate. Thus, the pathway will continue with two molecules of a glyceraldehyde-3-phosphate. At this point in the pathway, there is a net investment of energy from two ATP molecules in the breakdown of one glucose molecule.",
+      "sentences": [
+        "Step 5.",
+        "In the fifth step, an isomerase transforms the dihydroxyacetone-phosphate into its isomer, glyceraldehyde-3-phosphate.",
+        "Thus, the pathway will continue with two molecules of a glyceraldehyde-3-phosphate.",
+        "At this point in the pathway, there is a net investment of energy from two ATP molecules in the breakdown of one glucose molecule."
+      ],
+      "token_count": 50
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p08",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "So far, glycolysis has cost the cell two ATP molecules and produced two small, three-carbon sugar molecules. Both of these molecules will proceed through the second half of the pathway, and sufficient energy will be extracted to pay back the two ATP molecules used as an initial investment and produce a profit for the cell of two additional ATP molecules and two even higher-energy NADH molecules.",
+      "sentences": [
+        "So far, glycolysis has cost the cell two ATP molecules and produced two small, three-carbon sugar molecules.",
+        "Both of these molecules will proceed through the second half of the pathway, and sufficient energy will be extracted to pay back the two ATP molecules used as an initial investment and produce a profit for the cell of two additional ATP molecules and two even higher-energy NADH molecules."
+      ],
+      "token_count": 66
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p09",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "Step 6. The sixth step in glycolysis (Figure 7.9) oxidizes the sugar (glyceraldehyde-3-phosphate), extracting high-energy electrons, which are picked up by the electron carrier NAD+, producing NADH. The sugar is then phosphorylated by the addition of a second phosphate group, producing 1,3-bisphosphoglycerate. Note that the second phosphate group does not require another ATP molecule.",
+      "sentences": [
+        "Step 6.",
+        "The sixth step in glycolysis (Figure 7.9) oxidizes the sugar (glyceraldehyde-3-phosphate), extracting high-energy electrons, which are picked up by the electron carrier NAD+, producing NADH.",
+        "The sugar is then phosphorylated by the addition of a second phosphate group, producing 1,3-bisphosphoglycerate.",
+        "Note that the second phosphate group does not require another ATP molecule."
+      ],
+      "token_count": 54
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p10",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "Here again is a potential limiting factor for this pathway. The continuation of the reaction depends upon the availability of the oxidized form of the electron carrier, NAD+. Thus, NADH must be continuously oxidized back into NAD+ in order to keep this step going. If NAD+ is not available, the second half of glycolysis slows down or stops. If oxygen is available in the system, the NADH will be oxidized readily, though indirectly, and the high-energy electrons from the hydrogen released in this process will be used to produce ATP. In an environment without oxygen, an alternate pathway (fermentation) can provide the oxidation of NADH to NAD+.",
+      "sentences": [
+        "Here again is a potential limiting factor for this pathway.",
+        "The continuation of the reaction depends upon the availability of the oxidized form of the electron carrier, NAD+.",
+        "Thus, NADH must be continuously oxidized back into NAD+ in order to keep this step going.",
+        "If NAD+ is not available, the second half of glycolysis slows down or stops.",
+        "If oxygen is available in the system, the NADH will be oxidized readily, though indirectly, and the high-energy electrons from the hydrogen released in this process will be used to produce ATP.",
+        "In an environment without oxygen, an alternate pathway (fermentation) can provide the oxidation of NADH to NAD+."
+      ],
+      "token_count": 107
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p11",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "Step 7. In the seventh step, catalyzed by phosphoglycerate kinase (an enzyme named for the reverse reaction), 1,3-bisphosphoglycerate donates a high-energy phosphate to ADP, forming one molecule of ATP. (This is an example of substrate-level phosphorylation.) A carbonyl group on the 1,3-bisphosphoglycerate is oxidized to a carboxyl group, and 3-phosphoglycerate is formed.",
+      "sentences": [
+        "Step 7.",
+        "In the seventh step, catalyzed by phosphoglycerate kinase (an enzyme named for the reverse reaction), 1,3-bisphosphoglycerate donates a high-energy phosphate to ADP, forming one molecule of ATP. (This is an example of substrate-level phosphorylation.) A carbonyl group on the 1,3-bisphosphoglycerate is oxidized to a carboxyl group, and 3-phosphoglycerate is formed."
+      ],
+      "token_count": 52
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p12",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "Step 8. In the eighth step, the remaining phosphate group in 3-phosphoglycerate moves from the third carbon to the second carbon, producing 2-phosphoglycerate (an isomer of 3-phosphoglycerate). The enzyme catalyzing this step is a mutase (isomerase).",
+      "sentences": [
+        "Step 8.",
+        "In the eighth step, the remaining phosphate group in 3-phosphoglycerate moves from the third carbon to the second carbon, producing 2-phosphoglycerate (an isomer of 3-phosphoglycerate).",
+        "The enzyme catalyzing this step is a mutase (isomerase)."
+      ],
+      "token_count": 36
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p13",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "Step 9. Enolase catalyzes the ninth step. This enzyme causes 2-phosphoglycerate to lose water from its structure; this is a dehydration reaction, resulting in the formation of a double bond that increases the potential energy in the remaining phosphate bond and produces phosphoenolpyruvate (PEP).",
+      "sentences": [
+        "Step 9.",
+        "Enolase catalyzes the ninth step.",
+        "This enzyme causes 2-phosphoglycerate to lose water from its structure; this is a dehydration reaction, resulting in the formation of a double bond that increases the potential energy in the remaining phosphate bond and produces phosphoenolpyruvate (PEP)."
+      ],
+      "token_count": 44
+    },
+    {
+      "passage_id": "openstax-bio2e-7.2-p14",
+      "section": "7.2 Glycolysis",
+      "subsection": "Second Half of Glycolysis (Energy-Releasing Steps)",
+      "text": "Step 10. The last step in glycolysis is catalyzed by the enzyme pyruvate kinase (the enzyme in this case is named for the reverse reaction of pyruvate\u2019s conversion into PEP) and results in the production of a second ATP molecule by substrate-level phosphorylation and the compound pyruvic acid (or its salt form, pyruvate). Many enzymes in enzymatic pathways are named for the reverse reactions, since the enzyme can catalyze both forward and reverse reactions (these may have been described initially by the reverse reaction that takes place in vitro, under nonphysiological conditions).",
+      "sentences": [
+        "Step 10.",
+        "The last step in glycolysis is catalyzed by the enzyme pyruvate kinase (the enzyme in this case is named for the reverse reaction of pyruvate\u2019s conversion into PEP) and results in the production of a second ATP molecule by substrate-level phosphorylation and the compound pyruvic acid (or its salt form, pyruvate).",
+        "Many enzymes in enzymatic pathways are named for the reverse reactions, since the enzyme can catalyze both forward and reverse reactions (these may have been described initially by the reverse reaction that takes place in vitro, under nonphysiological conditions)."
+      ],
+      "token_count": 92
+    }
+  ]
+}

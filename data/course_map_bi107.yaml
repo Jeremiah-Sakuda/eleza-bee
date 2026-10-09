@@ -1,0 +1,85 @@
+course:
+  code: "BI 107"
+  title: "Cellular and Molecular Biology"
+  textbook: "OpenStax Biology 2e (CC BY 4.0)"
+
+units:
+  - id: "glycolysis"
+    title: "Glycolysis"
+    chapter: 7
+    section: "7.2"
+    source_file: "data/openstax_bio2e_ch7.json"
+    spoken_triggers:
+      - "glycolysis"
+      - "cellular respiration glycolysis"
+      - "glycolytic pathway"
+    key_ideas:
+      - id: "cellular_entry"
+        name: "Cellular entry and anaerobic cytoplasm location"
+        passage_id: "openstax-bio2e-7.2-p01"
+        description: "Glucose enters via GLUT proteins or active transport; glycolysis is anaerobic and takes place in the cytoplasm."
+
+      - id: "two_phases_overview"
+        name: "Two phases: glucose splitting to two pyruvates"
+        passage_id: "openstax-bio2e-7.2-p02"
+        description: "Glycolysis splits one 6-carbon glucose into two 3-carbon pyruvates across energy-requiring and energy-releasing phases."
+
+      - id: "hexokinase_atp_investment"
+        name: "Hexokinase and first ATP investment"
+        passage_id: "openstax-bio2e-7.2-p03"
+        description: "Hexokinase phosphorylates glucose to glucose-6-phosphate using one ATP, trapping it in the cell."
+
+      - id: "isomerization_to_fructose"
+        name: "Isomerization to fructose-6-phosphate"
+        passage_id: "openstax-bio2e-7.2-p04"
+        description: "An isomerase converts glucose-6-phosphate into fructose-6-phosphate."
+
+      - id: "pfk_rate_limiting"
+        name: "Phosphofructokinase as rate-limiting enzyme"
+        passage_id: "openstax-bio2e-7.2-p05"
+        description: "Phosphofructokinase consumes a second ATP to make fructose-1,6-bisphosphate and acts as the rate-limiting regulatory enzyme."
+
+      - id: "aldolase_cleavage"
+        name: "Aldolase cleavage into DHAP and G3P"
+        passage_id: "openstax-bio2e-7.2-p06"
+        description: "Aldolase cleaves fructose-1,6-bisphosphate into two three-carbon sugars: dihydroxyacetone phosphate and glyceraldehyde-3-phosphate."
+
+      - id: "isomerase_dhap_conversion"
+        name: "Isomerase conversion of DHAP to second G3P"
+        passage_id: "openstax-bio2e-7.2-p07"
+        description: "Isomerase converts DHAP into G3P; the energy-investment phase finishes with a net loss of two ATP."
+
+      - id: "energy_harvest_net_yield"
+        name: "Energy harvest payoff: net 2 ATP and 2 NADH"
+        passage_id: "openstax-bio2e-7.2-p08"
+        description: "The payoff phase extracts energy to repay two invested ATP and yield a net profit of two ATP and two NADH."
+
+      - id: "g3p_oxidation_and_bpg"
+        name: "G3P oxidation producing NADH and 1,3-BPG"
+        passage_id: "openstax-bio2e-7.2-p09"
+        description: "Glyceraldehyde-3-phosphate dehydrogenase oxidizes G3P, reducing NAD+ to NADH and attaching an inorganic phosphate."
+
+      - id: "role_of_nad_plus"
+        name: "The role of NAD+ and its regeneration"
+        passage_id: "openstax-bio2e-7.2-p10"
+        description: "NAD+ is a critical limiting factor; NADH must be continually oxidized back to NAD+ (via respiration or fermentation) for glycolysis to continue."
+
+      - id: "first_atp_generation_pgk"
+        name: "First substrate-level phosphorylation via PGK"
+        passage_id: "openstax-bio2e-7.2-p11"
+        description: "Phosphoglycerate kinase transfers phosphate from 1,3-BPG to ADP, producing ATP and 3-phosphoglycerate."
+
+      - id: "mutase_isomerization"
+        name: "Mutase shifting phosphate to 2-PGA"
+        passage_id: "openstax-bio2e-7.2-p12"
+        description: "Phosphoglycerate mutase moves the phosphate group to make 2-phosphoglycerate."
+
+      - id: "enolase_dehydration_pep"
+        name: "Enolase dehydration forming PEP"
+        passage_id: "openstax-bio2e-7.2-p13"
+        description: "Enolase causes dehydration of 2-phosphoglycerate, creating a high-energy double bond in phosphoenolpyruvate (PEP)."
+
+      - id: "pyruvate_kinase_final_atp"
+        name: "Pyruvate kinase producing final ATP and pyruvate"
+        passage_id: "openstax-bio2e-7.2-p14"
+        description: "Pyruvate kinase performs substrate-level phosphorylation of ADP to produce ATP and pyruvate."

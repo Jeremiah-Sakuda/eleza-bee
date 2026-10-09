@@ -1,0 +1,98 @@
+[
+  {
+    "claim_id": "c01",
+    "utterance_id": "u01",
+    "text": "Glucose enters the cell and glycolysis takes place anaerobically in the cytoplasm.",
+    "expected_passage_id": "openstax-bio2e-7.2-p01",
+    "expected_label": "supports",
+    "expected_key_idea": "cellular_entry"
+  },
+  {
+    "claim_id": "c02",
+    "utterance_id": "u02",
+    "text": "Glycolysis breaks down one six-carbon glucose into two three-carbon pyruvates.",
+    "expected_passage_id": "openstax-bio2e-7.2-p02",
+    "expected_label": "supports",
+    "expected_key_idea": "two_phases_overview"
+  },
+  {
+    "claim_id": "c03",
+    "utterance_id": "u03",
+    "text": "Hexokinase phosphorylates glucose into glucose-6-phosphate using up one molecule of ATP.",
+    "expected_passage_id": "openstax-bio2e-7.2-p03",
+    "expected_label": "supports",
+    "expected_key_idea": "hexokinase_atp_investment"
+  },
+  {
+    "claim_id": "c04",
+    "utterance_id": "u04",
+    "text": "An isomerase then converts glucose-6-phosphate into its isomer fructose-6-phosphate.",
+    "expected_passage_id": "openstax-bio2e-7.2-p04",
+    "expected_label": "supports",
+    "expected_key_idea": "isomerization_to_fructose"
+  },
+  {
+    "claim_id": "c05",
+    "utterance_id": "u05",
+    "text": "Phosphofructokinase acts as a rate-limiting enzyme and adds another phosphate with a second ATP.",
+    "expected_passage_id": "openstax-bio2e-7.2-p05",
+    "expected_label": "supports",
+    "expected_key_idea": "pfk_rate_limiting"
+  },
+  {
+    "claim_id": "c06",
+    "utterance_id": "u06",
+    "text": "Aldolase cleaves the sugar into dihydroxyacetone phosphate and glyceraldehyde-3-phosphate.",
+    "expected_passage_id": "openstax-bio2e-7.2-p06",
+    "expected_label": "supports",
+    "expected_key_idea": "aldolase_cleavage"
+  },
+  {
+    "claim_id": "c07",
+    "utterance_id": "u07",
+    "text": "The first phase produces ATP and energy for the cell.",
+    "expected_passage_id": "openstax-bio2e-7.2-p07",
+    "expected_label": "contradicts",
+    "expected_key_idea": "isomerase_dhap_conversion"
+  },
+  {
+    "claim_id": "c08",
+    "utterance_id": "u08",
+    "text": "Glyceraldehyde-3-phosphate dehydrogenase oxidizes G3P while reducing NAD+ to NADH.",
+    "expected_passage_id": "openstax-bio2e-7.2-p09",
+    "expected_label": "supports",
+    "expected_key_idea": "g3p_oxidation_and_bpg"
+  },
+  {
+    "claim_id": "c09",
+    "utterance_id": "u09",
+    "text": "Phosphoglycerate kinase produces ATP by substrate-level phosphorylation.",
+    "expected_passage_id": "openstax-bio2e-7.2-p11",
+    "expected_label": "supports",
+    "expected_key_idea": "first_atp_generation_pgk"
+  },
+  {
+    "claim_id": "c10",
+    "utterance_id": "u10",
+    "text": "Enolase causes dehydration to form high energy phosphoenolpyruvate.",
+    "expected_passage_id": "openstax-bio2e-7.2-p13",
+    "expected_label": "supports",
+    "expected_key_idea": "enolase_dehydration_pep"
+  },
+  {
+    "claim_id": "c11",
+    "utterance_id": "u11",
+    "text": "Pyruvate kinase catalyzes the last step yielding another ATP and pyruvate.",
+    "expected_passage_id": "openstax-bio2e-7.2-p14",
+    "expected_label": "supports",
+    "expected_key_idea": "pyruvate_kinase_final_atp"
+  },
+  {
+    "claim_id": "c12",
+    "utterance_id": "u12",
+    "text": "Chloroplasts capture photons during the light reactions of photosynthesis.",
+    "expected_passage_id": null,
+    "expected_label": "unrelated",
+    "expected_key_idea": null
+  }
+]

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eleza • Say it without the notes</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-logo">E</div>
+        <div>
+          <h1 class="brand-title">Eleza</h1>
+          <p class="brand-subtitle">Say it without the notes • Student Review Surface</p>
+        </div>
+      </div>
+      <div class="status-badge" id="bee-status-badge">
+        <span class="pulse-dot"></span>
+        <span id="bee-status-text">Bee Wearable: Connected</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="content-column">
+      
+      <div class="hero-banner">
+        <div>
+          <h2 class="hero-title" id="session-unit-title">Glycolysis</h2>
+          <p class="hero-meta" id="session-meta">BI 107 • Aligned against OpenStax Biology 2e (CC BY 4.0)</p>
+        </div>
+        <button class="hero-btn" id="run-walk-btn" onclick="runWalkSimulation()">Simulate Walk Session</button>
+      </div>
+
+      <div class="section-title">
+        <span>Contradictions</span>
+        <span class="badge-count" id="contradiction-count">0</span>
+      </div>
+      <div id="contradictions-container">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="section-title">
+        <span>Covered Key Ideas</span>
+        <span class="badge-count" id="covered-count">0</span>
+      </div>
+      <div class="ideas-grid" id="covered-ideas-container">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="section-title">
+        <span>Skipped Key Ideas</span>
+        <span class="badge-count" id="skipped-count">0</span>
+      </div>
+      <div class="ideas-grid" id="skipped-ideas-container">
+        <!-- Rendered via JS -->
+      </div>
+
+    </div>
+
+    <aside class="sidebar">
+      
+      <!-- Apple Watch Frame Preview -->
+      <div class="watch-preview-container">
+        <div class="watch-header">
+          <span>9:41 AM</span>
+          <span>Bee AI</span>
+        </div>
+
+        <div class="watch-card">
+          <div class="watch-title">Session Complete</div>
+          <div class="watch-body" id="watch-summary-text">
+            Glycolysis: 10 of 14 ideas, 1 contradiction.
+          </div>
+          <div class="watch-actions">
+            <button class="watch-btn" onclick="alert('Opened review on phone')">View Spans</button>
+          </div>
+        </div>
+
+        <div class="watch-card" style="border-left: 3px solid var(--accent-amber);">
+          <div class="watch-title" style="color: var(--accent-amber);">Tomorrow's Gap Prompt</div>
+          <div class="watch-body" id="watch-gap-prompt">
+            Yesterday had a contradiction on ATP. Focus on where ATP is invested on today's walk.
+          </div>
+          <div class="watch-actions">
+            <button class="watch-btn" onclick="handleWristAction('got_it')">Got it</button>
+            <button class="watch-btn" onclick="handleWristAction('said_differently')">Differently</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Longitudinal Memory Ledger Card -->
+      <div class="ledger-card">
+        <div class="ledger-header">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Longitudinal Ledger
+        </div>
+        <div class="ledger-summary" id="ledger-summary-text">
+          Tracking retention across walks without notes.
+        </div>
+        <div id="ledger-stats">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </aside>
+
+    <footer class="provenance-footer">
+      <div>Eleza Engine v1.0 • Built for Amazon Developer Hackathon (Bee Track & Open Source Mini-Challenge)</div>
+      <div>Source Ingestion: OpenStax Biology 2e (CC BY 4.0)</div>
+    </footer>
+  </main>
+
+  <script>
+    let currentSessionId = "";
+    let currentTargetIdea = "";
+
+    async function loadData() {
+      try {
+        const sessionRes = await fetch('/api/session/latest');
+        const sessionData = await sessionRes.json();
+        renderSession(sessionData);
+
+        const ledgerRes = await fetch('/api/ledger');
+        const ledgerData = await ledgerRes.json();
+        renderLedger(ledgerData);
+
+        const beeRes = await fetch('/api/bee/status');
+        const beeData = await beeRes.json();
+        if (beeData.installed) {
+          document.getElementById('bee-status-text').innerText = 'Bee Wearable: Ready';
+        }
+      } catch (err) {
+        console.error("Error loading Eleza data:", err);
+      }
+    }
+
+    function renderSession(data) {
+      currentSessionId = data.session_id;
+      const report = data.report;
+      
+      document.getElementById('watch-summary-text').innerText = data.summary_notification;
+      document.getElementById('session-unit-title').innerText = report.unit_title || "Glycolysis";
+      
+      // Contradictions
+      const contradictions = report.contradictions || [];
+      document.getElementById('contradiction-count').innerText = contradictions.length;
+      const cContainer = document.getElementById('contradictions-container');
+      cContainer.innerHTML = '';
+
+      if (contradictions.length === 0) {
+        cContainer.innerHTML = '<div style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">No contradictions detected. All explanations aligned with canonical text.</div>';
+      } else {
+        contradictions.forEach(c => {
+          currentTargetIdea = c.student_said;
+          const card = document.createElement('div');
+          card.className = 'contradiction-card';
+          card.innerHTML = `
+            <div class="card-header-tag">Contradiction Detected</div>
+            <div class="span-comparison">
+              <div class="span-box student">
+                <div class="span-label">You Said (Utterance ${c.utterance_id || 'u07'})</div>
+                <div class="span-text">"${c.student_said}"</div>
+              </div>
+              <div class="span-box canonical">
+                <div class="span-label">The Text Says (${c.passage_id})</div>
+                <div class="span-text">"${c.text_says}"</div>
+                <div class="citation-meta">OpenStax Bio 2e • Section 7.2</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn-secondary" onclick="recordAction('${currentSessionId}', '${c.student_said}', 'said_differently')">I Said It Differently</button>
+              <button class="btn-primary" onclick="recordAction('${currentSessionId}', '${c.student_said}', 'got_it')">Got It</button>
+            </div>
+          `;
+          cContainer.appendChild(card);
+        });
+      }
+
+      // Covered
+      const covered = report.covered_ideas || [];
+      document.getElementById('covered-count').innerText = covered.length;
+      const covContainer = document.getElementById('covered-ideas-container');
+      covContainer.innerHTML = '';
+      covered.forEach(idea => {
+        const item = document.createElement('div');
+        item.className = 'idea-item covered';
+        item.innerHTML = `
+          <span class="idea-name">${idea}</span>
+          <span class="idea-tag tag-covered">Covered</span>
+        `;
+        covContainer.appendChild(item);
+      });
+
+      // Skipped
+      const skipped = report.skipped_ideas || [];
+      document.getElementById('skipped-count').innerText = skipped.length;
+      const skipContainer = document.getElementById('skipped-ideas-container');
+      skipContainer.innerHTML = '';
+      skipped.forEach(idea => {
+        const item = document.createElement('div');
+        item.className = 'idea-item skipped';
+        item.innerHTML = `
+          <span class="idea-name">${idea}</span>
+          <span class="idea-tag tag-skipped">Skipped</span>
+        `;
+        skipContainer.appendChild(item);
+      });
+    }
+
+    function renderLedger(data) {
+      const insights = data.insights;
+      const prompt = data.gap_prompt;
+
+      if (prompt && prompt.wrist_prompt) {
+        document.getElementById('watch-gap-prompt').innerText = prompt.wrist_prompt;
+      }
+
+      if (insights && insights.summary_text) {
+        document.getElementById('ledger-summary-text').innerText = insights.summary_text;
+      }
+
+      const statsContainer = document.getElementById('ledger-stats');
+      statsContainer.innerHTML = '';
+      if (insights && insights.persistent_skipped) {
+        insights.persistent_skipped.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'ledger-stat-item';
+          div.innerText = `• Still slipping: ${item.idea} (${item.skip_count} walks)`;
+          statsContainer.appendChild(div);
+        });
+      }
+    }
+
+    async function recordAction(sessionId, targetIdea, actionType) {
+      try {
+        await fetch('/api/action', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            session_id: sessionId,
+            target_idea: targetIdea,
+            action: actionType
+          })
+        });
+        alert(`Recorded action: ${actionType === 'got_it' ? 'Got It' : 'Excluded from ledger (Said Differently)'}`);
+        loadData();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function handleWristAction(actionType) {
+      recordAction(currentSessionId, currentTargetIdea, actionType);
+    }
+
+    async function runWalkSimulation() {
+      const btn = document.getElementById('run-walk-btn');
+      btn.innerText = 'Evaluating walk...';
+      try {
+        const res = await fetch('/api/session/evaluate-sample', {method: 'POST'});
+        const data = await res.json();
+        renderSession(data);
+        const ledgerRes = await fetch('/api/ledger');
+        const ledgerData = await ledgerRes.json();
+        renderLedger(ledgerData);
+      } finally {
+        btn.innerText = 'Simulate Walk Session';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>
