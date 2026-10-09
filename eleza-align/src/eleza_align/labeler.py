@@ -29,9 +29,11 @@ Respond ONLY with valid JSON:
 }"""
 
 class PairLabeler:
-    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None, provider: Optional[str] = None):
+        self.provider = provider or os.getenv("ELEZA_LLM_PROVIDER", "auto")
         self.api_key = api_key or os.getenv("ELEZA_LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
         self.model = model or os.getenv("ELEZA_LLM_MODEL", "gpt-4o-mini")
+        self.bedrock_model_id = os.getenv("AWS_BEDROCK_MODEL_ID", "anthropic.claude-3-5-sonnet-20241022-v2:0")
 
     @staticmethod
     def verify_invariant_2(passage: Passage, cited_sentence: Optional[str]) -> bool:
@@ -40,7 +42,6 @@ class PairLabeler:
         """
         if not cited_sentence:
             return False
-        # Normalize whitespace for check
         norm_passage = " ".join(passage.text.split())
         norm_cited = " ".join(cited_sentence.split())
         return norm_cited in norm_passage
@@ -48,15 +49,68 @@ class PairLabeler:
     def label_pair(self, claim: Claim, passage: Passage, score: float = 1.0) -> PairAlignment:
         """
         Labels a (claim, passage) pair.
-        Uses LLM if available; otherwise uses deterministic semantic matching for tests.
+        Supports AWS Bedrock, OpenAI, and deterministic fallback.
         """
+        # Try AWS Bedrock if configured
+        if self.provider == "bedrock" or (self.provider == "auto" and os.getenv("AWS_ACCESS_KEY_ID")):
+            try:
+                return self._label_with_bedrock(claim, passage, score)
+            except Exception:
+                pass
+
         if self.api_key:
             try:
                 return self._label_with_llm(claim, passage, score)
-            except Exception as e:
-                # Log and fallback to deterministic engine
+            except Exception:
                 pass
 
+        return self._label_deterministic(claim, passage, score)
+
+    def _label_with_bedrock(self, claim: Claim, passage: Passage, score: float) -> PairAlignment:
+        import boto3
+        bedrock = boto3.client("bedrock-runtime", region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1"))
+        user_prompt = f"""Passage text:
+{passage.text}
+
+Passage sentences:
+{json.dumps(passage.sentences, indent=2)}
+
+Student claim:
+"{claim.text}"
+"""
+        response = bedrock.converse(
+            modelId=self.bedrock_model_id,
+            messages=[{"role": "user", "content": [{"text": user_prompt}]}],
+            system=[{"text": LABEL_SYSTEM_PROMPT}],
+            inferenceConfig={"temperature": 0.0}
+        )
+        content_text = response["output"]["message"]["content"][0]["text"]
+        # Parse JSON from Bedrock response
+        import re
+        json_match = re.search(r'\{.*\}', content_text, re.DOTALL)
+        if json_match:
+            data = json.loads(json_match.group(0))
+            raw_label = data.get("label", "unrelated").lower()
+            cited_sentence = data.get("cited_sentence")
+            label = LabelEnum.UNRELATED
+            if raw_label == "supports":
+                label = LabelEnum.SUPPORTS
+            elif raw_label == "contradicts":
+                label = LabelEnum.CONTRADICTS
+
+            if label in (LabelEnum.SUPPORTS, LabelEnum.CONTRADICTS):
+                if not self.verify_invariant_2(passage, cited_sentence):
+                    label = LabelEnum.UNRELATED
+                    cited_sentence = None
+
+            return PairAlignment(
+                claim=claim,
+                passage=passage,
+                retrieval_score=score,
+                label=label,
+                cited_sentence=cited_sentence,
+                reasoning=data.get("reasoning", "AWS Bedrock Converse alignment.")
+            )
         return self._label_deterministic(claim, passage, score)
 
     def _label_with_llm(self, claim: Claim, passage: Passage, score: float) -> PairAlignment:

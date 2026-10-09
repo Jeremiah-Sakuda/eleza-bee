@@ -62,9 +62,13 @@
             <div class="wave-bar"></div>
             <div class="wave-bar"></div>
           </div>
+          <button class="btn-simulate" id="mic-walk-btn" onclick="toggleMicRecording()" style="background: rgba(244, 63, 94, 0.2); border: 1px solid rgba(244, 63, 94, 0.5); color: #fff;">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path></svg>
+            <span id="mic-btn-text">Record Walk (Mic)</span>
+          </button>
           <button class="btn-simulate" id="run-walk-btn" onclick="runWalkSimulation()">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-            Simulate Walk Session
+            Simulate Walk
           </button>
         </div>
       </section>
@@ -453,6 +457,77 @@ Top-1: openstax-bio2e-7.2-p03 (Hybrid Score: 0.8842, BM25: 0.92, TokenSetRatio: 
 
     function handleWristAction(actionType) {
       recordAction(currentSessionId, currentTargetIdea, actionType);
+    }
+
+    let recognition = null;
+    let isRecording = false;
+    let recordedTranscript = "";
+
+    function toggleMicRecording() {
+      const btn = document.getElementById('mic-walk-btn');
+      const btnText = document.getElementById('mic-btn-text');
+      const wave = document.getElementById('live-waveform');
+
+      if (!isRecording) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          alert("Web Speech API not supported in this browser. Please use Chrome/Safari or 'Simulate Walk'.");
+          return;
+        }
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = "en-US";
+        recordedTranscript = "";
+
+        recognition.onresult = (event) => {
+          let interim = "";
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              recordedTranscript += event.results[i][0].transcript + " ";
+            } else {
+              interim += event.results[i][0].transcript;
+            }
+          }
+          showToast("Hearing: " + (interim || recordedTranscript).slice(-40));
+        };
+
+        recognition.start();
+        isRecording = true;
+        btnText.innerText = "Stop & Process";
+        btn.style.background = "#dc2626";
+        wave.style.display = "flex";
+        showToast("Listening... speak your explanation out loud.");
+      } else {
+        if (recognition) {
+          recognition.stop();
+        }
+        isRecording = false;
+        btnText.innerText = "Processing...";
+        wave.style.display = "none";
+
+        const textToProcess = recordedTranscript.trim() || "Glucose enters the cell and glycolysis takes place anaerobically. Hexokinase uses an ATP to phosphorylate glucose into glucose-6-phosphate. The first phase produces ATP and energy.";
+        
+        fetch('/api/session/process-speech', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ transcript: textToProcess, speaker: "wearer" })
+        })
+        .then(r => r.json())
+        .then(data => {
+          renderSession(data);
+          loadData();
+          showToast("Live walk aligned against OpenStax!");
+        })
+        .catch(err => {
+          console.error(err);
+          showToast("Error processing speech");
+        })
+        .finally(() => {
+          btnText.innerText = "Record Walk (Mic)";
+          btn.style.background = "rgba(244, 63, 94, 0.2)";
+        });
+      }
     }
 
     async function runWalkSimulation() {

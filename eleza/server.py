@@ -160,6 +160,60 @@ def evaluate_sample_walk():
         "summary_notification": f"Glycolysis: {report.covered_count} of {report.total_key_ideas} ideas, {report.contradicted_count} contradiction",
     }
 
+class LiveSpeechRequest(BaseModel):
+    transcript: str
+    speaker: str = "wearer"
+
+@app.post("/api/session/process-speech")
+def process_live_speech(req: LiveSpeechRequest):
+    """Processes real speech captured from the browser microphone."""
+    if not req.transcript.strip():
+        raise HTTPException(status_code=400, detail="Empty transcript")
+
+    unit_map = load_unit_map()
+    normalizer = TermNormalizer.from_json("data/openstax_bio2e_ch7.json")
+    session_id = f"sess-mic-{int(os.times()[4] * 1000)}"
+
+    # Normalize spoken input
+    norm = normalizer.normalize(req.transcript)
+    utterance = TranscriptUtterance(
+        utterance_id="u-live-01",
+        text=norm.normalized_text,
+        speaker=req.speaker
+    )
+
+    segmenter = ClaimSegmenter()
+    claims = segmenter.segment_utterances([utterance])
+
+    if not claims:
+        # Fallback to direct claim if segmenter filtered short sentence
+        claims = [from_text(session_id, norm.normalized_text)]
+
+    retriever = HybridRetriever(unit_map.passages, threshold=0.15)
+    labeler = PairLabeler()
+
+    alignments = []
+    for claim in claims:
+        candidates = retriever.retrieve(claim, top_k=1)
+        if candidates:
+            best_passage, score = candidates[0]
+            align = labeler.label_pair(claim, best_passage, score=score)
+            alignments.append(align)
+
+    engine = CoverageEngine(unit_map)
+    report = engine.evaluate(alignments)
+    ledger.record_session(session_id, report, duration_seconds=120)
+
+    return {
+        "session_id": session_id,
+        "report": report.model_dump(),
+        "summary_notification": f"Glycolysis: {report.covered_count} of {report.total_key_ideas} ideas, {report.contradicted_count} contradiction",
+    }
+
+def from_text(sess_id: str, text: str):
+    from eleza_align.models import Claim
+    return Claim(claim_id=f"{sess_id}-c1", utterance_id="u-live-01", text=text, speaker="wearer")
+
 @app.get("/api/session/latest")
 def get_latest_session():
     events = ledger.load_all_events()

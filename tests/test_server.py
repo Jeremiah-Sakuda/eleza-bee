@@ -50,3 +50,13 @@ def test_record_student_action():
     })
     assert response.status_code == 200
     assert response.json()["status"] == "recorded"
+
+def test_process_live_speech():
+    response = client.post("/api/session/process-speech", json={
+        "transcript": "Hexokinase phosphorylates glucose into glucose-6-phosphate using up one molecule of ATP.",
+        "speaker": "wearer"
+    })
+    assert response.status_code == 200
+    data = response.json()
+    assert "session_id" in data
+    assert data["report"]["covered_count"] >= 1
